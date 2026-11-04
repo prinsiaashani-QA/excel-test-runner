@@ -1,10 +1,25 @@
+# Python
 .venv/
 venv/
 __pycache__/
-.pytest_cache/
 *.pyc
+.pytest_cache/
+
+# Environment
 .env
+
+# Logs
 *.log
+
+# Test execution artifacts
+output/
 reports/
 test-results/
 playwright-report/
+uploads/
+
+# Editor
+.vscode/
+
+# Old development files
+old_changes.patch
