@@ -1,6 +1,11 @@
 import argparse
 import sys
+from pathlib import Path
 from urllib.parse import urlparse
+
+# make the "core" folder importable even if Python starts in safe-path mode
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
 from core.runner import run
 from core.rules import BROWSERS
 
