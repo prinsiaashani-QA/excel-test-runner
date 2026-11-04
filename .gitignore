@@ -2,8 +2,9 @@
 venv/
 __pycache__/
 .pytest_cache/
-output/
+*.pyc
 .env
-uploads/
-old_changes.patch
-.vscode/
+*.log
+reports/
+test-results/
+playwright-report/
