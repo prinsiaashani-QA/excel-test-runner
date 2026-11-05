@@ -1,8 +1,6 @@
-# Excel Test Runner
+﻿# Excel Test Runner
 
-A lightweight keyword-driven test runner. Write test cases in an Excel sheet, run them with
-Playwright (Python) on any website, and get **Actual Result + Status** written back to Excel,
-with a **screenshot and video on every failure**.
+A lightweight keyword-driven test runner. Write test cases in an Excel sheet, run them with Playwright (Python) on any website, and get **Actual Result + Status** written back to Excel, with a **screenshot and video on every failure**.
 
 Inspired by keyword-driven tools such as Katalon and Robot Framework.
 
@@ -12,18 +10,25 @@ Inspired by keyword-driven tools such as Katalon and Robot Framework.
 3. Fills `Actual Result` and `Status` in your sheet
 4. On failure saves a screenshot and a video
 5. Passwords are masked in error messages
+6. Web UI with live progress, a report page (Excel, HTML and evidence zip downloads) and run history
+
+## Web UI (Streamlit)
+    pip install -r requirements.txt
+    python -m streamlit run app.py
+
+Pages: **New Test Run** (URL, login, browser, upload Excel, run all or selected test cases), **Test Report** and **Run History**.
+The tests run in a separate process, so the UI stays responsive.
 
 ## Setup
     pip install -r requirements.txt
     playwright install
 
-## Quick start
+## Command line
     python make_template.py
     python run.py input/test_cases.xlsx --url https://www.saucedemo.com --username standard_user --password secret_sauce --headed
 
 Expected: 2 passed, 1 failed (TC-003 is a demo that fails on purpose).
 
-## Options
 | Option | Meaning |
 |---|---|
 | `--url` | Website URL (required) |
@@ -66,8 +71,7 @@ A title row above the header is allowed. Leave `Actual Result` and `Status` empt
 | verify_count | yes | yes | Number of matching elements |
 
 ### Locators: `strategy=value`
-`placeholder=Username`, `role=button:Login`, `text=Add to cart`, `label=Email`,
-`testid=login-btn` (data-testid), `css=.title`, `xpath=//div[@id='a']`
+`placeholder=Username`, `role=button:Login`, `text=Add to cart`, `label=Email`, `testid=login-btn` (data-testid), `css=.title`, `xpath=//div[@id='a']`
 
 Tip: run `playwright codegen https://your-site.com` and click around. It writes the locators for you.
 
@@ -77,5 +81,8 @@ Tip: run `playwright codegen https://your-site.com` and click around. It writes 
         screenshots/      failed steps
         videos/           failed test cases
 
-## Limits (next phases)
-HTML report, Streamlit upload page, iframes, new tabs, file upload, login once for all test cases.
+## Tests and CI
+Tests are in the `tests` folder (run with `pytest`). A GitHub Actions workflow in `.github/workflows` runs on every push.
+
+## Not supported yet
+iframes, new tabs, file upload, and logging in once for all test cases.
